@@ -24,17 +24,4 @@ typedef struct {
 */
 COLUMN *create_column(char* title);
 
-/**
-* @brief : Free allocated memory
-* @param1 : Pointer to a column
-*/
-void delete_column(COLUMN *col);
-
-/**
-* @brief: Print a column content
-* @param: Pointer to a column
-*/
-void print_col(COLUMN* col);
-
 #endif //PROJET_CDATAFRAME_COLUMN_H
-
