@@ -20,3 +20,14 @@ COLUMN *create_column(char* title){
     return column;
 }
 
+
+void delete_column(COLUMN *col){
+    free(col->_values);
+    free(col);
+}
+
+void print_col(COLUMN* col){
+    for(int i = 0; i<col->_used_size; i++){
+        printf("[%d] %d", i, col->_values[i]);
+    }
+}
