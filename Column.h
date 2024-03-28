@@ -14,6 +14,7 @@ typedef struct {
     char _name[NAME_SIZE];
     int* _values;
     int _allocated_size;
+    int _used_size;
 }COLUMN;
 
 /**

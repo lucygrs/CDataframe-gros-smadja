@@ -12,6 +12,7 @@ COLUMN *create_column(char* title){
     }
     column->_values = NULL;
     column->_allocated_size = 0;
+    column->_used_size = 0;
 
     return column;
 }
