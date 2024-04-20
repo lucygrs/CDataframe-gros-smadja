@@ -27,11 +27,66 @@ COLUMN *create_column(char* title);
 * @brief : Free allocated memory
 * @param1 : Pointer to a column
 */
-void delete_column(COLUMN **col);
+void delete_column(COLUMN *col);
 /**
 * @brief: Print a column content
-* @param: Pointer to a column
+* @param1: Pointer to a column
 */
 void print_col(COLUMN* col);
+
+/**
+* @brief : Add a new value to a column
+* @param1 : Pointer to a column
+* @param2 : The value to be added
+* @return : 1 if the value is added 0 otherwise
+*/
+int insert_value(COLUMN* col, int value);
+
+/**
+* @brief : Reallocates while adding a chunk of size REALOC_SIZE
+* @param1 : Pointer to a column
+* @return : 1 if the reallocation is successful 0 otherwise
+*/
+int reallocate(COLUMN* col);
+
+/**
+* @brief: Count the occurences of x
+* @param1: Pointer to a column
+* @param2: Integer value to count
+* @return: Occurences of x
+*/
+int occurences(COLUMN* col, int x);
+
+/**
+* @brief: Returns the value at index x
+* @param1: Pointer to a column
+* @param2: Value index
+* @return: Value at index x
+*/
+int value_at_index(COLUMN* col, int x);
+
+/**
+* @brief: Count the number of values strictly greater than x
+* @param1: Pointer to a column
+* @param2: Integer value
+* @return: Number of values greater than x
+*/
+int values_strictly_greater_than(COLUMN* col, int x);
+
+/**
+* @brief: Count the number of values strictly lower than x
+* @param1: Pointer to a column
+* @param2: Integer value
+* @return: Number of values lower than x
+*/
+int values_strictly_lower_than(COLUMN* col, int x);
+
+/**
+* @brief: Count the number of values equal to x
+* @param1: Pointer to a column
+* @param2: Integer value
+* @return: Number of values equal to x
+*/
+int values_equal_to(COLUMN* col, int x);
 
 #endif //PROJET_CDATAFRAME_COLUMN_H
