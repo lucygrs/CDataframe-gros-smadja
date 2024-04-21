@@ -5,6 +5,7 @@
 #include <stdio.h>
 
 #include "Column.h"
+#include "Dataframe.h"
 
 int main(){
     COLUMN* col = create_column("My first column");
@@ -24,9 +25,26 @@ int main(){
     printf("Number of values lower than %d : %d\n", 9, values_strictly_lower_than(col, 9));
     printf("Number of values equal to %d : %d\n", 5655, values_equal_to(col, 5655));
 
-
-
     print_col(col);
     delete_column(col);
+
+    //on se propose ici de créer un dataframe qui contiendra une colonne par jour de la semaine, et une ligne par heure
+    //pour chaque heure on pourra remplir le nombre de calories brûlée
+    DATAFRAME* dataframe = create_dataframe();
+    char** days = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"};
+    for(int i = 0; i<7; i++){
+        add_column(dataframe);
+        rename_column_at_index(dataframe, i, days[i]);
+    }
+    for(int i = 0; i<24; i++){
+        add_row(dataframe);
+    }
+    printf("Remplissage du dataframe");
+    for(int i = 0; i<24; i++){
+        fill_column_at_index(dataframe, i);
+    }
+
+    delete_dataframe(dataframe);
+
 
 }

@@ -10,12 +10,15 @@
 #define REALOC_SIZE 256
 #define NAME_SIZE 50
 
+
 typedef struct {
     char _name[NAME_SIZE];
     int* _values;
     int _allocated_size;
     int _used_size;
+
 }COLUMN;
+
 
 /**
 * Create a column
@@ -65,6 +68,8 @@ int occurences(COLUMN* col, int x);
 */
 int value_at_index(COLUMN* col, int x);
 
+
+//ALL OF THE BELOW ARE FOR INTEGERS COLUMNS ONLY
 /**
 * @brief: Count the number of values strictly greater than x
 * @param1: Pointer to a column

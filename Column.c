@@ -69,7 +69,7 @@ int insert_value(COLUMN* col, int value){
 
 int reallocate(COLUMN* col){
     printf("Reallocating... ");
-    void * reallocation = realloc((void*)col->_values, col->_allocated_size + REALOC_SIZE);
+    void * reallocation = realloc((void*)col->_values, (col->_allocated_size + REALOC_SIZE) * sizeof(int));
     if(reallocation) {
         col->_values = reallocation;
         col->_allocated_size+=REALOC_SIZE;
