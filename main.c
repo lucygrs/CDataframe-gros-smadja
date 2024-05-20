@@ -9,16 +9,17 @@
 
 int main(){
     COLUMN* col = create_column(INT, "My first column");
+    col->_valid_index=NO_INDEX;
+    col->_sort_dir=DESC;
 
     insert_value(col, (COL_TYPE)5);
     insert_value(col, (COL_TYPE)6);
     insert_value(col, (COL_TYPE)7);
     insert_value(col, (COL_TYPE)8);
-    insert_value(col, (COL_TYPE)9);
+    insert_value(col, (COL_TYPE)6);
+    insert_value(col, (COL_TYPE)4);
     insert_value(col, (COL_TYPE)5655);
-    insert_value(col, (COL_TYPE)5655);
-    insert_value(col, (COL_TYPE)5655);
-    insert_value(col, (COL_TYPE)5655);
+    insert_value(col, (COL_TYPE)3);
 
     int value = 5655;
     printf("Occurences of %d : %d\n", 5655, occurences(col, &value));
@@ -27,6 +28,15 @@ int main(){
     printf("Number of values equal to %d : %d\n", 5655, values_equal_to(col, (COL_TYPE)5655));
 
     print_col(col);
+    sort_column(col);
+    print_col(col);
+    insert_value(col, (COL_TYPE)3);
+    sort_column(col);
+    print_col(col);
+
+    int v = 3;
+
+    printf("\nindex : %d", search_value_in_column(col, &v));
     delete_column(col);
 /*
 

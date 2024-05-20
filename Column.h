@@ -10,11 +10,18 @@
 #define REALOC_SIZE 256
 #define NAME_SIZE 50
 
+#define EQUAL 0
+#define HIGHER 1
+#define LOWER -1
+
 enum enum_type
 {
     NULLVAL = 1 , UINT, INT, CHAR, FLOAT, DOUBLE, STRING
 };
 typedef enum enum_type ENUM_TYPE;
+
+enum {NO_INDEX=0, VALID_INDEX=1, INVALID_INDEX=-1};
+enum {ASC = 0, DESC = 1};
 
 union column_type{
     unsigned int uint_value;
@@ -35,8 +42,12 @@ typedef struct {
 
     ENUM_TYPE _column_type;
     unsigned long long int *_index;
+    int _valid_index;
+    int _sort_dir;
 
 }COLUMN;
+
+typedef unsigned long long int LONGINT;
 
 COLUMN *create_column(ENUM_TYPE type, char* title);
 
@@ -109,5 +120,30 @@ int values_strictly_lower_than(COLUMN* col, COL_TYPE x);
 * @return: Number of values equal to x
 */
 int values_equal_to(COLUMN* col, COL_TYPE x);
+
+COL_TYPE highest_union(COL_TYPE a, COL_TYPE b, ENUM_TYPE type);
+
+COL_TYPE lowest_union(COL_TYPE a, COL_TYPE b, ENUM_TYPE type);
+
+int equal_union(COL_TYPE a, COL_TYPE b, ENUM_TYPE type);
+
+int equal_by_index(LONGINT a, LONGINT b, COL_TYPE *array, LONGINT *indexes, ENUM_TYPE type);
+
+int left_higher_byindex(LONGINT a, LONGINT b, COL_TYPE *array, LONGINT *indexes, ENUM_TYPE type);
+
+int left_higher_or_eq_byindex(LONGINT a, LONGINT b, COL_TYPE *array, LONGINT *indexes, ENUM_TYPE type);
+
+int left_lower_byindex(LONGINT a, LONGINT b, COL_TYPE *array, LONGINT *indexes, ENUM_TYPE type);
+
+int left_lower_or_eq_byindex(LONGINT a, LONGINT b, COL_TYPE *array, LONGINT *indexes, ENUM_TYPE type);
+
+
+int sort_column(COLUMN* col);
+
+int insertion_sort(COL_TYPE* array, LONGINT *indexes, int length, int sort_dir, ENUM_TYPE type);
+
+int quick_sort(COL_TYPE *array, LONGINT *indexes, LONGINT length, int sort_dir, ENUM_TYPE type);
+
+int search_value_in_column(COLUMN *col, void *val);
 
 #endif //PROJET_CDATAFRAME_COLUMN_H
